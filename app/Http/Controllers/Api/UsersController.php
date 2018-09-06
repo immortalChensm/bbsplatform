@@ -7,6 +7,11 @@ use App\Http\Requests\Api\UserRequest;
 use App\Models\User;
 class UsersController extends Controller
 {
+    function __construct()
+    {
+        $this->middleware("api.auth",['only'=>'test']);
+    }
+
     //
     public function store(UserRequest $request)
     {
@@ -31,5 +36,11 @@ class UsersController extends Controller
         \Cache::forget($request->verification_key);
 
         return $this->response->created();
+    }
+
+    function test()
+    {
+
+        return $this->response->array(['a'=>'b','user'=>$this->auth->user()]);
     }
 }

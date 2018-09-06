@@ -59,6 +59,9 @@ $api->version("v1",[
         // 删除token
         $api->delete('authorizations/current', 'AuthorizationsController@destroy')
             ->name('api.authorizations.destroy');
+
+        //测试一下
+        $api->get("user/test",'UsersController@test');
     });
 
 });
